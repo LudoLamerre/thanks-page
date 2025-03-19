@@ -87,11 +87,11 @@
             100% { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* Animation des bougies */
+        /* Bougies */
         .wrapper {
             position: absolute;
             left: 50%;
-            bottom: 0%;
+            bottom: 5%;
             transform: scale(1.5) translate(-50%, 0%);
             z-index: 1;
         }
@@ -127,7 +127,7 @@
             border-radius: 3px;
             transform-origin: center right;
             box-shadow: -2px 0px 0px #95c6f2 inset;
-            animation: expand-body 3s infinite linear;
+            animation: expand-body 3s infinite linear, change-color 3s infinite alternate ease-in-out;
         }
 
         .candle1 {
@@ -155,24 +155,72 @@
             transform: translate(-50%, -100%);
         }
 
+        /* Yeux et bouche */
+        .candle1__eyes, .candle2__eyes {
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            width: 35px;
+            height: 30px;
+            transform: translate(-50%, 0%);
+        }
+
+        .candle1__eyes-one, .candle1__eyes-two, .candle2__eyes-one, .candle2__eyes-two {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 100%;
+            background: #673C63;
+            animation: blink-eyes 3s infinite linear;
+        }
+
+        .candle1__eyes-one { left: 30%; top: 20%; }
+        .candle1__eyes-two { left: 70%; top: 20%; }
+        .candle2__eyes-one { left: 30%; top: 50%; }
+        .candle2__eyes-two { left: 70%; top: 50%; }
+
+        .candle1__mouth {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            width: 10px;
+            height: 5px;
+            border-radius: 10px;
+            background: #673C63;
+            transform: translate(-50%, -50%);
+            animation: uff 3s infinite linear;
+        }
+
+        /* Animation des yeux */
+        @keyframes blink-eyes {
+            0%,35% { opacity: 1; }
+            36%,39% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+
+        /* Animation du changement de couleur */
+        @keyframes change-color {
+            0% { background: #FFDDC1; }
+            50% { background: #FFD1C1; }
+            100% { background: #FFDDC1; }
+        }
+
+        /* Feu */
         .candle2__fire {
             position: absolute;
             top: 50%;
             left: 40%;
-            display: block;
             width: 16px;
             height: 20px;
-            background-color: red;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             background: #FF9800;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             transform: translate(-50%, -50%);
             animation: dance-fire 3s infinite linear;
         }
 
         @keyframes dance-fire {
-            59%,89% { left: 40%; width: 0px; height: 0px; }
-            90%,0%,7%,15%,23%,31%,39%,47%,55% { left: 40.8%; width: 16px; height: 20px; background: #FFC107; }
-            94%,3%,11%,19%,27%,35%,43%,51%,58% { left: 41.2%; width: 16px; height: 20px; background: #FF9800; }
+            0%,50% { transform: scale(1); background: #FFC107; }
+            100% { transform: scale(1.1); background: #FF9800; }
         }
 
     </style>
@@ -185,34 +233,20 @@
     
     <div class="emoji">🥳🎊🎈</div>
 
-    <!-- Bougies -->
     <div class="wrapper">
         <div class="candles">
             <div class="candle1">
-                <div class="candle1__stick"></div>
+                <div class="candle1__eyes">
+                    <div class="candle1__eyes-one"></div>
+                    <div class="candle1__eyes-two"></div>
+                </div>
+                <div class="candle1__mouth"></div>
             </div>
             <div class="candle2">
-                <div class="candle2__stick"></div>
+                <div class="candle2__fire"></div>
             </div>
-            <div class="candle2__fire"></div>
         </div>
-        <div class="floor"></div>
     </div>
-
-    <script>
-        function createConfetti() {
-            for (let i = 0; i < 120; i++) {
-                let confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.setProperty('--x', Math.random());
-                confetti.style.setProperty('--color', `hsl(${Math.random() * 360}, 100%, 80%)`);
-                confetti.style.animationDuration = `${2 + Math.random() * 3}s`;
-                confetti.style.animationDelay = `${Math.random() * 2}s`;
-                document.body.appendChild(confetti);
-            }
-        }
-        createConfetti();
-    </script>
 
 </body>
 </html>
