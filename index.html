@@ -1,632 +1,206 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <title>Merci Beaucoup ! 🎉</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&family=Fredoka+One&display=swap');
-
-            /* Texte stylisé */
-    .text-container {
-        position: absolute;
-        top: 5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 20px;
-        min-height: 300px;
-        height: calc(100% - 225px);
-        padding: 5px 0 5px 0;
-        width: 100%;
-    }
-
-    h1 {
-        font-family: 'Pacifico', cursive;
-        font-size: 4rem;
-        color: #05445E;
-        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-        margin: 0;
-        text-align: center;
-        line-height: 5rem;
-    }
-
-    h2 {
-        font-family: 'Fredoka One', cursive;
-        font-size: 2.5rem;
-        color: #189AB4;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-        margin: 0;
-        text-align: center;
-        line-height: 3rem;
-    }
-
-    p {
-        font-family: 'Quicksand', sans-serif;
-        font-size: 1.8rem;
-        color: #75E6DA;
-        font-weight: bold;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        line-height: 2rem;
-    }
-
-    @media screen and (max-width: 768px) {
-        .text-container h1 {
-            font-size: 2.5rem;
-            line-height: 3rem;
-        }
-    
-        .text-container h2 {
-            font-size: 2rem;
-            line-height: 2.5rem;
-        }
-    
-        .text-container p {
-            font-size: 1.5rem;
-            line-height: 2rem;
-        }
-    }
-    
-    body {
-      background-color: #FFF;
-      animation: change-background 3s infinite linear;
-      width: 100vw;
-      height: 100dvh;
-      overflow: hidden;
-    }
-    
-    .wrapper {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: scale(1.5, 1.5) translate(-50%, -50%);
-    }
-    
-    .floor {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 350px;
-      height: 5px;
-      background: #673C63;
-      transform: translate(-50%, -50%);
-      box-shadow: 0px 2px 5px #111;
-      z-index: 2;
-    }
-    
-    .candles {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 250px;
-      height: 150px;
-      transform: translate(-50%, -100%);
-      z-index: 1;
-    }
-
- 
-    
-    .candle1 {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 35px;
-      height: 100px;
-      background: #fff;
-      border: 3px solid #673C63;
-      border-bottom: 0px;
-      border-radius: 3px;
-      transform-origin: center right;
-      transform: translate(60%, -25%);
-      box-shadow: -2px 0px 0px #95c6f2 inset;
-      animation: expand-body 3s infinite linear;
-    }
-    
-    .candle1__stick, .candle2__stick {
-      position: absolute;
-      left: 50%;
-      top: 0%;
-      width: 3px;
-      height: 15px;
-      background: #673C63;
-      border-radius: 8px;
-      transform: translate(-50%, -100%);
-    }
-    
-    .candle2__stick {
-      height: 12px;
-      transform-origin: bottom center;
-      animation: stick-animation 3s infinite linear;
-    }
-    
-    .candle1__eyes, .candle2__eyes {
-      position: absolute;
-      left: 50%;
-      top: 0%;
-      width: 35px;
-      height: 30px;
-      transform: translate(-50%, 0%);
-    }
-    
-    .candle1__eyes-one {
-      position: absolute;
-      left: 30%;
-      top: 20%;
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background: #673C63;
-      transform: translate(-70%, 0%);
-      animation: blink-eyes 3s infinite linear;
-    }
-    
-    .candle1__eyes-two {
-      position: absolute;
-      left: 70%;
-      top: 20%;
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background: #673C63;
-      transform: translate(-70%, 0%);
-      animation: blink-eyes 3s infinite linear;
-    }
-    
-    .candle1__mouth {
-      position: absolute;
-      left: 40%;
-      top: 20%;
-      width: 0px;
-      height: 0px;
-      border-radius: 20px;
-      background: #673C63;
-      transform: translate(-50%, -50%);
-      animation: uff 3s infinite linear;
-    }
-    
-    .candle__smoke-one {
-      position: absolute;
-      left: 30%;
-      top: 50%;
-      width: 30px;
-      height: 3px;
-      background: grey;
-      transform: translate(-50%, -50%);
-      animation: move-left 3s infinite linear;
-    }
-    
-    .candle__smoke-two {
-      position: absolute;
-      left: 30%;
-      top: 40%;
-      width: 10px;
-      height: 10px;
-      border-radius: 10px;
-      background: grey;
-      transform: translate(-50%, -50%);
-      animation: move-top 3s infinite linear;
-    }
-    
-    .candle2 {
-      position: absolute;
-      left: 20%;
-      top: 65%;
-      width: 42px;
-      height: 60px;
-      background: #fff;
-      border: 3px solid #673C63;
-      border-bottom: 0px;
-      border-radius: 3px;
-      transform: translate(60%, -15%);
-      transform-origin: center right;
-      box-shadow: -2px 0px 0px #95c6f2 inset;
-      animation: shake-left 3s infinite linear;
-    }
-    
-    .candle2__eyes-one {
-      position: absolute;
-      left: 30%;
-      top: 50%;
-      width: 5px;
-      height: 5px;
-      display: inline-block;
-      border: 0px solid #673C63;
-      border-radius: 100%;
-      float: left;
-      background: #673C63;
-      transform: translate(-80%, 0%);
-      animation: changeto-lower 3s infinite linear;
-    }
-    
-    .candle2__eyes-two {
-      position: absolute;
-      left: 70%;
-      top: 50%;
-      width: 5px;
-      height: 5px;
-      display: inline-block;
-      border: 0px solid #673C63;
-      border-radius: 100%;
-      float: left;
-      background: #673C63;
-      transform: translate(-80%, 0%);
-      animation: changeto-greater 3s infinite linear;
-    }
-    
-    .light__wave {
-      position: absolute;
-      top: 35%;
-      left: 35%;
-      width: 75px;
-      height: 75px;
-      border-radius: 100%;
-      z-index: 0;
-      transform: translate(-25%, -50%) scale(2.5, 2.5);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      animation: expand-light 3s infinite linear;
-    }
-    
-    .candle2__fire {
-      position: absolute;
-      top: 50%;
-      left: 40%;
-      display: block;
-      width: 16px;
-      height: 20px;
-      background-color: red;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      background: #FF9800;
-      transform: translate(-50%, -50%);
-      animation: dance-fire 3s infinite linear;
-    }
-    
-    @keyframes blink-eyes {
-      0%,35% {
-        opacity: 1;
-        transform: translate(-70%, 0%);
-      }
-      36%,39% {
-        opacity: 0;
-        transform: translate(-70%, 0%);
-      }
-      40% {
-        opacity: 1;
-        transform: translate(-70%, 0%);
-      }
-      50%,65% {
-        transform: translate(-140%, 0%);
-      }
-      66% {
-        transform: translate(-70%, 0%);
-      }
-    }
-    @keyframes expand-body {
-      0%,40% {
-        transform: scale(1, 1) translate(60%, -25%);
-      }
-      45%,55% {
-        transform: scale(1.1, 1.1) translate(60%, -28%);
-      }
-      60% {
-        transform: scale(0.89, 0.89) translate(60%, -25%);
-      }
-      65% {
-        transform: scale(1, 1) translate(60%, -25%);
-      }
-      70% {
-        transform: scale(0.95, 0.95) translate(60%, -25%);
-      }
-      75% {
-        transform: scale(1, 1) translate(60%, -25%);
-      }
-    }
-    @keyframes uff {
-      0%,40% {
-        width: 0px;
-        height: 0px;
-      }
-      50%,54% {
-        width: 15px;
-        height: 15px;
-        left: 30%;
-      }
-      59% {
-        width: 5px;
-        height: 5px;
-        left: 20%;
-      }
-      62% {
-        width: 2px;
-        height: 2px;
-        left: 20%;
-      }
-      67% {
-        width: 0px;
-        height: 0px;
-        left: 30%;
-      }
-    }
-    @keyframes change-background {
-      0%,59%,98%,100% {
-        background: #FFF;
-      }
-      75%,97% {
-        background: #000;
-      }
-    }
-    @keyframes move-left {
-      0%,59%,100% {
-        width: 0px;
-        left: 40%;
-      }
-      60% {
-        width: 30px;
-        left: 30%;
-      }
-      68% {
-        width: 0px;
-        left: 20%;
-      }
-    }
-    @keyframes move-top {
-      0%,64%,100% {
-        width: 0px;
-        height: 0px;
-        top: 0%;
-      }
-      65% {
-        width: 10px;
-        height: 10px;
-        top: 40%;
-        left: 40%;
-      }
-      80% {
-        width: 0px;
-        height: 0px;
-        top: 20%;
-      }
-    }
-    @keyframes shake-left {
-      0%,40% {
-        left: 20%;
-        transform: translate(60%, -15%);
-      }
-      50%,54% {
-        left: 20%;
-        transform: translate(60%, -15%);
-      }
-      59% {
-        left: 20%;
-        transform: translate(60%, -15%);
-      }
-      62% {
-        left: 18%;
-        transform: translate(60%, -15%);
-      }
-      65% {
-        left: 21%;
-        transform: translate(60%, -15%);
-      }
-      67% {
-        left: 20%;
-        transform: translate(60%, -15%);
-      }
-      75% {
-        left: 20%;
-        transform: scale(1.15, 0.85) translate(60%, -15%);
-        background: #fff;
-        border-color: #673C63;
-      }
-      91% {
-        left: 20%;
-        transform: scale(1.18, 0.82) translate(60%, -10%);
-        background: #F44336;
-        border-color: #F44336;
-        box-shadow: -2px 0px 0px #F44336 inset;
-      }
-      92% {
-        left: 20%;
-        transform: scale(0.85, 1.15) translate(60%, -15%);
-      }
-      95% {
-        left: 20%;
-        transform: scale(1.05, 0.95) translate(60%, -15%);
-      }
-      97% {
-        left: 20%;
-        transform: scale(1, 1) translate(60%, -15%);
-      }
-    }
-    @keyframes stick-animation {
-      0%,40% {
-        left: 50%;
-        top: 0%;
-        transform: translate(-50%, -100%);
-      }
-      50%,54% {
-        left: 50%;
-        top: 0%;
-        transform: translate(-50%, -100%);
-      }
-      59% {
-        left: 50%;
-        top: 0%;
-        transform: translate(-50%, -100%);
-      }
-      62% {
-        left: 50%;
-        top: 0%;
-        transform: rotateZ(-15deg) translate(-50%, -100%);
-      }
-      65% {
-        left: 50%;
-        top: 0%;
-        transform: rotateZ(15deg) translate(-50%, -100%);
-      }
-      70% {
-        left: 50%;
-        top: 0%;
-        transform: rotateZ(-5deg) translate(-50%, -100%);
-      }
-      72% {
-        left: 50%;
-        top: 0%;
-        transform: rotateZ(5deg) translate(-50%, -100%);
-      }
-      74%,84% {
-        left: 50%;
-        top: 0%;
-        transform: rotateZ(0deg) translate(-50%, -100%);
-      }
-      85% {
-        transform: rotateZ(180deg) translate(0%, 120%);
-      }
-      92% {
-        left: 50%;
-        top: 0%;
-        transform: translate(-50%, -100%);
-      }
-    }
-    @keyframes expand-light {
-      10%,29%,59%,89% {
-        transform: translate(-25%, -50%) scale(0, 0);
-        border: 2px solid rgba(255, 255, 255, 0);
-      }
-      90%,20%,50% {
-        transform: translate(-25%, -50%) scale(1, 1);
-      }
-      95%,96%,26%,27%,56%,57% {
-        transform: translate(-25%, -50%) scale(2, 2);
-        border: 2px solid rgba(255, 255, 255, 0.5);
-      }
-      0%,28%,58%,100% {
-        transform: translate(-25%, -50%) scale(2.5, 2.5);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-      }
-    }
-    @keyframes dance-fire {
-      59%,89% {
-        left: 40%;
-        width: 0px;
-        height: 0px;
-      }
-      90%,0%,7%,15%,23%,31%,39%,47%,55% {
-        left: 40.8%;
-        width: 16px;
-        height: 20px;
-        background: #FFC107;
-      }
-      94%,3%,11%,19%,27%,35%,43%,51%,58% {
-        left: 41.2%;
-        width: 16px;
-        height: 20px;
-        background: #FF9800;
-      }
-    }
-    @keyframes changeto-lower {
-      0%,70%,90% {
-        padding: 0px;
-        display: inline-block;
-        border-radius: 100%;
-        background: #673C63;
-        border-width: 0 0 0 0;
-        border: 0px solid #673C63;
-        transform: translate(-90%, 0%);
-      }
-      71%,89% {
-        background: none;
-        border: solid #673C63;
-        border-radius: 0px;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 1px;
-        float: left;
-        transform-origin: bottom left;
-        transform: rotate(-45deg) translate(-50%, -65%);
-        -webkit-transform: rotate(-45deg) translate(-50%, -65%);
-      }
-    }
-    @keyframes changeto-greater {
-      0%,70%,90% {
-        top: 50%;
-        padding: 0px;
-        display: inline-block;
-        border-radius: 100%;
-        background: #673C63;
-        border-width: 0 0 0 0;
-        border: 0px solid #673C63;
-        transform: translate(-80%, 0%);
-      }
-      71%,89% {
-        top: 30%;
-        background: none;
-        border: solid #673C63;
-        border-radius: 0px;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 1px;
-        float: left;
-        transform-origin: bottom left;
-        transform: rotate(135deg) translate(-80%, 20%);
-        -webkit-transform: rotate(135deg) translate(-80%, 20%);
-      }
-    }
-  </style>
-  
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skydiving Blog (Demo) • Occitanie & Pyrenees • Azimut Tandem</title>
+  <meta name="description" content="A simple demo blog about tandem skydiving in Occitanie and the Pyrenees, with links to Azimut Tandem." />
 </head>
-    <body>
-    <!-- partial:index.partial.html -->
-    <!-- Texte centré au-dessus des bougies -->
-    <div class="text-container">
-        <h1>Merci Beaucoup ! 🎉</h1>
-        <h2>Vous êtes incroyables ! 💙💚</h2>
-        <p>Bonne journée à tous ✨✨</p>
-    </div>
-    <div class="wrapper">
-      <div class="candles">
-        <div class="light__wave"></div>
-        <div class="candle1">
-          <div class="candle1__body">
-            <div class="candle1__eyes">
-              <span class="candle1__eyes-one"></span>
-              <span class="candle1__eyes-two"></span>
-            </div>
-            <div class="candle1__mouth"></div>
-          </div>
-          <div class="candle1__stick"></div>
-        </div>
-        
-        <div class="candle2">
-          <div class="candle2__body">
-            <div class="candle2__eyes">
-              <div class="candle2__eyes-one"></div>
-              <div class="candle2__eyes-two"></div>
-            </div>
-          </div>
-          <div class="candle2__stick"></div>
-        </div>
-        <div class="candle2__fire"></div>
-        <div class="sparkles-one"></div>
-        <div class="sparkles-two"></div>
-        <div class="candle__smoke-one">
-    
-        </div>
-        <div class="candle__smoke-two">
-    
-        </div>
-        
+<body id="top" style="margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif; color:#222; background:#fafafa; line-height:1.6;">
+  <!-- Page container -->
+  <div style="max-width:1000px; margin:0 auto; padding:24px;">
+
+    <!-- Header / Hero -->
+    <header style="padding:24px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+      <h1 style="margin:0 0 8px 0; font-size:28px;">Skydiving in Occitanie & the Pyrenees — Demo Blog</h1>
+      <p style="margin:0 0 16px 0; font-size:16px;">
+        Thinking about your first <strong>tandem skydive</strong> in southern France? Start here! This one-page demo includes quick guides,
+        local tips, and links to <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener" style="color:#0b65c2; text-decoration:none;">Azimut Tandem</a>.
+      </p>
+
+      <!-- Primary call to action -->
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+           style="display:inline-block; background:#0b65c2; color:#fff; padding:12px 16px; border-radius:10px; text-decoration:none; font-weight:600;">
+          Book with Azimut Tandem
+        </a>
+        <a href="#articles"
+           style="display:inline-block; background:#f0f4ff; color:#0b65c2; padding:12px 16px; border-radius:10px; text-decoration:none; font-weight:600;">
+          Jump to Articles
+        </a>
       </div>
-      <div class="floor">
-      </div>
-      
-    
-    </div>
-    <!-- partial -->
-      
-    </body>
+    </header>
+
+    <!-- Navigation / Table of contents -->
+    <nav id="articles" aria-label="Article list"
+         style="margin-top:20px; padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+      <h2 style="margin:0 0 12px 0; font-size:22px;">Articles</h2>
+      <ol style="margin:0; padding-left:20px;">
+        <li style="margin:6px 0;"><a href="#article-1" style="color:#0b65c2; text-decoration:none;">Your First Tandem Skydive: 10 Clear Steps</a></li>
+        <li style="margin:6px 0;"><a href="#article-2" style="color:#0b65c2; text-decoration:none;">Safety & Requirements in France (Occitanie)</a></li>
+        <li style="margin:6px 0;"><a href="#article-3" style="color:#0b65c2; text-decoration:none;">Best Season & Weather Tips in the Pyrenees</a></li>
+        <li style="margin:6px 0;"><a href="#article-4" style="color:#0b65c2; text-decoration:none;">Tandem vs. AFF: Which One Is Right for You?</a></li>
+        <li style="margin:6px 0;"><a href="#article-5" style="color:#0b65c2; text-decoration:none;">What to Wear & What to Bring</a></li>
+        <li style="margin:6px 0;"><a href="#article-6" style="color:#0b65c2; text-decoration:none;">Gift Vouchers & Pricing: Quick FAQ</a></li>
+      </ol>
+    </nav>
+
+    <!-- Articles -->
+    <main style="margin-top:20px; display:grid; gap:20px;">
+      <!-- Article 1 -->
+      <article id="article-1" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">Your First Tandem Skydive: 10 Clear Steps</h3>
+        <p style="margin:0 0 12px 0;">
+          A tandem skydive is the easiest way to experience freefall. You’re securely attached to a professional instructor who
+          handles the gear and procedures while you focus on the thrill and the views over the Pyrenees.
+        </p>
+        <ol style="margin:0 0 12px 24px;">
+          <li>Book your jump with <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener" style="color:#0b65c2; text-decoration:none;">Azimut Tandem</a>.</li>
+          <li>Arrive on time; bring ID and follow briefing instructions.</li>
+          <li>Gear up: harness fitting + safety checks.</li>
+          <li>Climb to altitude (typically 3,000–4,000 m).</li>
+          <li>Door open: position, smile, breathe.</li>
+          <li>Freefall: ~35–50 seconds of pure adrenaline.</li>
+          <li>Parachute opens: 5–7 minutes of scenic flight.</li>
+          <li>Gentle landing with instructor guidance.</li>
+          <li>Debrief + optional video/photos review.</li>
+          <li>Celebrate — you did it!</li>
+        </ol>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            Book at Azimut Tandem
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article id="article-2" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">Safety & Requirements in France (Occitanie)</h3>
+        <p style="margin:0 0 12px 0;">
+          Tandem skydives are performed under strict regulations and by certified instructors. Typical requirements include a
+          minimum age (often 15–16 with consent), adherence to weight and health guidelines, and a mandatory safety briefing.
+        </p>
+        <ul style="margin:0 0 12px 24px;">
+          <li><strong>Briefing first:</strong> Procedures, body position, and landing explained clearly.</li>
+          <li><strong>Equipment:</strong> Professionally maintained tandem parachute systems with reserve and AAD.</li>
+          <li><strong>Weather:</strong> Jumps proceed only in safe conditions (visibility, wind, cloud base).</li>
+        </ul>
+        <p style="margin:0 0 12px 0;">
+          Always follow your instructor’s guidance. If you have medical concerns, consult your doctor before booking.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            Learn more at Azimut Tandem
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article id="article-3" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">Best Season & Weather Tips in the Pyrenees</h3>
+        <p style="margin:0 0 12px 0;">
+          The Pyrenees offer spectacular mountain views. Spring to early autumn often brings the most stable conditions, but
+          great jump days can happen year-round. Flexibility helps when weather changes.
+        </p>
+        <ul style="margin:0 0 12px 24px;">
+          <li><strong>Plan ahead:</strong> Book early, choose a date with backup options.</li>
+          <li><strong>Be flexible:</strong> Wind and cloud cover may shift schedules.</li>
+          <li><strong>Layers:</strong> Temperatures are cooler at altitude even in summer.</li>
+        </ul>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            Check dates on Azimut Tandem
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article id="article-4" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">Tandem vs. AFF: Which One Is Right for You?</h3>
+        <p style="margin:0 0 12px 0;">
+          <strong>Tandem</strong> is perfect for a first jump: minimal training, maximum experience. <strong>AFF</strong> (Accelerated Freefall)
+          is a training path that leads to solo skydiving licenses and requires more time and commitment.
+        </p>
+        <ul style="margin:0 0 12px 24px;">
+          <li><strong>Tandem:</strong> Instructor controls the skydive; you enjoy the ride.</li>
+          <li><strong>AFF:</strong> You learn skills to deploy and fly your own canopy.</li>
+          <li><strong>Tip:</strong> Try tandem first; if you love it, consider an AFF course later.</li>
+        </ul>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            Start with a Tandem — Azimut
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article id="article-5" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">What to Wear & What to Bring</h3>
+        <p style="margin:0 0 12px 0;">
+          Dress for comfort and safety. Avoid loose scarves or jewelry. Tie long hair and wear secure shoes (no open-toed
+          footwear). Bring a valid ID and arrive hydrated and rested.
+        </p>
+        <ul style="margin:0 0 12px 24px;">
+          <li><strong>Clothes:</strong> Comfortable layers; avoid bulky hoods.</li>
+          <li><strong>Shoes:</strong> Lace-up sneakers are ideal.</li>
+          <li><strong>Extras:</strong> Water, sunscreen, and a light snack.</li>
+        </ul>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            Prepare with Azimut’s guidance
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article id="article-6" style="padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px;">
+        <h3 style="margin:0 0 8px 0; font-size:20px;">Gift Vouchers & Pricing: Quick FAQ</h3>
+        <p style="margin:0 0 12px 0;">
+          A tandem skydive is an unforgettable gift. Many centers offer <em>gift vouchers</em> valid for several months and
+          optional photo/video packages.
+        </p>
+        <ul style="margin:0 0 12px 24px;">
+          <li><strong>How pricing works:</strong> Location, altitude, and media options affect the final price.</li>
+          <li><strong>Gift validity:</strong> Check expiry and blackout dates before purchase.</li>
+          <li><strong>Rescheduling:</strong> Weather can cause changes—vouchers usually allow new dates.</li>
+        </ul>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#top" style="text-decoration:none; color:#0b65c2;">⬆ Back to top</a>
+          <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener"
+             style="text-decoration:none; background:#0b65c2; color:#fff; padding:8px 12px; border-radius:8px; font-weight:600;">
+            See options on Azimut Tandem
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer style="margin:24px 0 0 0; padding:16px; background:#ffffff; border:1px solid #eee; border-radius:12px; font-size:14px;">
+      <p style="margin:0 0 8px 0;">
+        Demo blog for illustration only. For real bookings and details, visit
+        <a href="https://www.azimut-tandem.fr" target="_blank" rel="noopener" style="color:#0b65c2; text-decoration:none;">azimut-tandem.fr</a>.
+      </p>
+      <p style="margin:0;">© <span id="year">2025</span> Demo Blog</p>
+    </footer>
+  </div>
+
+  <!-- Tiny inline script just to keep the footer year current (optional) -->
+  <script>
+    // Keep the year updated automatically
+    (function () {
+      var el = document.getElementById('year');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
 </html>
